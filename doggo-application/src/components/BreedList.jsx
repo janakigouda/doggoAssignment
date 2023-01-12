@@ -9,7 +9,8 @@ const getBreedlist=async ()=>{
 }
 
 export const BreedList=()=>{
-    const email=useLocation();
+    let email=sessionStorage.getItem("email");
+    const emailAddress=useLocation();
     const [list,setList]=useState([]);
     const [breed,setBreed]=useState("");
     const breedlist=[];
@@ -28,7 +29,7 @@ export const BreedList=()=>{
     const handleClick=()=>{
         navigate("/randomimage",{state:{breedName:breed}})
     }
-
+    if(email){
     return(
         <>
             <div>
@@ -42,9 +43,11 @@ export const BreedList=()=>{
                         <option value={item}>{item}</option>
                     )}
                     </select>
-                    <button onClick={handleClick}>Get Details</button>
+                    <button onClick={handleClick} className={styles.btn}>Get Details</button>
                 </div>
             </div>
         </>
-    )
+    )}else{
+        alert("please login first")
+    }
 }

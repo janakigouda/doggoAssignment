@@ -4,6 +4,7 @@ import styles from "./Styles.module.css";
 
 
 export const RandomImage=()=>{
+    let email=sessionStorage.getItem("email");
     const breed=useLocation();
     const [image,setImage]=useState();
     const navigate=useNavigate();
@@ -20,13 +21,26 @@ export const RandomImage=()=>{
         navigate("/breedlist");
     }
 
+    const logout=()=>{
+        sessionStorage.setItem("email","");
+        navigate("/")
+    }
+
+    if(email){
     return(
         <>
+            <div className={styles.randomContainer}>
             <h1>
                 Breed Details
             </h1>
-            <img src={image} alt="img"/>
-            <button onClick={clickBack}>Go Back</button>
+            <button onClick={logout}>Logout</button>
+            </div>
+            <div>
+            <img src={image} alt="img" className={styles.randomimg}/>
+            </div>
+            <button onClick={clickBack} className={styles.goback}>Go Back</button>
         </>
-    )
+    )}else{
+        alert("please login first")
+    }
 }

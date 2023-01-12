@@ -8,6 +8,7 @@ export const Login=()=>{
     const navigate=useNavigate();
 
     const handleSubmit = (e)=>{
+        sessionStorage.setItem("email",email);
         navigate("/breedlist",{state:{email:email}})
     }
 
