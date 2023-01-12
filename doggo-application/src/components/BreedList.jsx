@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import styles from "./Styles.module.css";
 
-const getBreedlist=()=>{
-    return fetch("https://dog.ceo/api/breeds/list/all").then(res=>res.json());
+const getBreedlist=async ()=>{
+    const res = await fetch("https://dog.ceo/api/breeds/list/all");
+    return await res.json();
 }
 
 export const BreedList=()=>{
@@ -30,14 +32,18 @@ export const BreedList=()=>{
     return(
         <>
             <div>
-                <h3>Breed List</h3>
-                <select name="breeds" id="breeds" onChange={(e)=>setBreed(e.target.value)}>
-                <option value="">Select breed</option>    
-                {breedlist && breedlist.map((item,index)=>
-                    <option value={item}>{item}</option>
-                )}
-                </select>
-                <button onClick={handleClick}>Get Details</button>
+                <div className={styles.container}>
+                    <h3>Breed List</h3>
+                </div>
+                <div className={styles.breedContainer}>
+                    <select name="breeds" id="breeds" onChange={(e)=>setBreed(e.target.value)}>
+                    <option value="">Select breed</option>    
+                    {breedlist && breedlist.map((item,index)=>
+                        <option value={item}>{item}</option>
+                    )}
+                    </select>
+                    <button onClick={handleClick}>Get Details</button>
+                </div>
             </div>
         </>
     )

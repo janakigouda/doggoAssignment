@@ -1,4 +1,3 @@
-
 import './App.css';
 import { AllRoutes } from './routes/Allroutes';
 

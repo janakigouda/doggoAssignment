@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom";
+import styles from "./Styles.module.css";
+
 
 export const RandomImage=()=>{
     const breed=useLocation();
